@@ -16,15 +16,11 @@ def translate():
 
 # Iterates either convert or capitals or nothing over the input text
 def encode(text):
-    return ''.join([convert(x) if x in alphabet else capitals(x) if x in caps else x for x in text])
+    return ''.join([convert(x, alphabet) if x in alphabet else convert(x, caps) if x in caps else x for x in text])
 
-
-def convert(letter):
-    return alphabet[(alphabet.index(letter) - 2) % len(alphabet)]
-
-
-def capitals(letter):
-    return caps[(caps.index(letter) - 2) % len(caps)]
+# Converts letters to the letter two left of it on the keyboard
+def convert(letter, dictionary):
+    return dictionary[(dictionary.index(letter) - 2) % len(dictionary)]
 
 
 # Press the green button in the gutter to run the script.
