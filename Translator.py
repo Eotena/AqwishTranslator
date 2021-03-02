@@ -18,6 +18,7 @@ def translate():
 def encode(text):
     return ''.join([convert(x, alphabet) if x in alphabet else convert(x, caps) if x in caps else x for x in text])
 
+
 # Converts letters to the letter two left of it on the keyboard
 def convert(letter, dictionary):
     return dictionary[(dictionary.index(letter) - 2) % len(dictionary)]
