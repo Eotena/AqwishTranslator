@@ -13,15 +13,26 @@ def translate():
     translation = encode(var.get())
     var1.set(translation)
 
+# Translates the input from the left box, and outputs the result in the right box
+def reverse_translate():
+    translation = uncode(var1.get())
+    var.set(translation)
 
 # Iterates either convert or capitals or nothing over the input text
 def encode(text):
     return ''.join([convert(x, alphabet) if x in alphabet else convert(x, caps) if x in caps else x for x in text])
 
+# Iterates either convert or capitals or nothing over the input text
+def uncode(text):
+    return ''.join([devert(x, alphabet) if x in alphabet else devert(x, caps) if x in caps else x for x in text])
+
 
 # Converts letters to the letter two left of it on the keyboard
 def convert(letter, dictionary):
     return dictionary[(dictionary.index(letter) - 2) % len(dictionary)]
+
+def devert(letter, dictionary):
+    return dictionary[(dictionary.index(letter) + 2) % len(dictionary)]
 
 
 # Press the green button in the gutter to run the script.
@@ -49,7 +60,9 @@ if __name__ == '__main__':
     textbox = Entry(mainframe, textvariable=var1).grid(row=2, column=3)
 
     # creating a button to call Translator function
-    b = Button(mainframe, text='Translate', command=translate).grid(row=3, column=1, columnspan=3)
+    b = Button(mainframe, text='Translate', command=translate).grid(row=3, column=0, columnspan=3)
+
+    b = Button(mainframe, text='Reverse translate', command=reverse_translate).grid(row=3, column=2, columnspan=3)
 
     root.mainloop()
 
