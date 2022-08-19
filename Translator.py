@@ -13,14 +13,17 @@ def translate():
     translation = encode(var.get())
     var1.set(translation)
 
+
 # Translates the input from the left box, and outputs the result in the right box
 def reverse_translate():
     translation = uncode(var1.get())
     var.set(translation)
 
+
 # Iterates either convert or capitals or nothing over the input text
 def encode(text):
     return ''.join([convert(x, alphabet) if x in alphabet else convert(x, caps) if x in caps else x for x in text])
+
 
 # Iterates either convert or capitals or nothing over the input text
 def uncode(text):
@@ -31,6 +34,7 @@ def uncode(text):
 def convert(letter, dictionary):
     return dictionary[(dictionary.index(letter) - 2) % len(dictionary)]
 
+# Converts letters to the letter two spaces right of it on the keyboard
 def devert(letter, dictionary):
     return dictionary[(dictionary.index(letter) + 2) % len(dictionary)]
 
@@ -62,9 +66,9 @@ if __name__ == '__main__':
     # creating a button to call Translator function
     b = Button(mainframe, text='Translate', command=translate).grid(row=3, column=0, columnspan=3)
 
+    # creating a button to call the reverse translation function
     b = Button(mainframe, text='Reverse translate', command=reverse_translate).grid(row=3, column=2, columnspan=3)
 
     root.mainloop()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
-
